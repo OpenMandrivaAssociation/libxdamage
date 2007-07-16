@@ -1,4 +1,8 @@
-%define libxdamage %mklibname xdamage 1
+%define major 1
+%define libname %mklibname xdamage %{major}
+%define develname %mklibname xdamage -d
+%define staticdevelname %mklibname xdamage -d -s
+
 Name: libxdamage
 Summary:  X Damage  Library
 Version: 1.1.1
@@ -7,48 +11,51 @@ Group: Development/X11
 License: MIT
 URL: http://xorg.freedesktop.org
 Source0: http://xorg.freedesktop.org/releases/individual/lib/libXdamage-%{version}.tar.bz2
-BuildRoot: %{_tmppath}/%{name}-root
 
 BuildRequires: libx11-devel >= 1.0.0
 BuildRequires: libxfixes-devel >= 3.0.1.2
 BuildRequires: x11-proto-devel >= 1.2.0
 BuildRequires: x11-util-macros >= 1.0.1
+BuildRequires: chrpath
+
+BuildRoot: %{_tmppath}/%{name}-root
 
 %description
-X Damage  Library
+X Damage  Library.
 
 #-----------------------------------------------------------
 
-%package -n %{libxdamage}
+%package -n %{libname}
 Summary: X Damage Library
 Group: Development/X11
 Conflicts: libxorg-x11 < 7.0
 Provides: %{name} = %{version}
 
-%description -n %{libxdamage}
-X Damage  Library
+%description -n %{libname}
+X Damage  Library.
 
 #-----------------------------------------------------------
 
-%package -n %{libxdamage}-devel
+%package -n %{develname}
 Summary: Development files for %{name}
 Group: Development/X11
-Requires: %{libxdamage} = %{version}
+Requires: %{libname} = %{version}
 Requires: libxfixes-devel >= 3.0.1.2
 Requires: x11-proto-devel >= 1.0.0
-Provides: libxdamage-devel = %{version}-%{release}
+Provides: %{name}-devel = %{version}-%{release}
 
 Conflicts: libxorg-x11-devel < 7.0
+Obsoletes: %mklibname xdamage 1 -d
 
-%description -n %{libxdamage}-devel
+%description -n %{develname}
 Development files for %{name}
 
-%pre -n %{libxdamage}-devel
+%pre -n %{develname}
 if [ -h %{_includedir}/X11 ]; then
 	rm -f %{_includedir}/X11
 fi
 
-%files -n %{libxdamage}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %{_libdir}/libXdamage.so
 %{_libdir}/libXdamage.la
@@ -57,18 +64,19 @@ fi
 
 #-----------------------------------------------------------
 
-%package -n %{libxdamage}-static-devel
+%package -n %{staticdevelname}
 Summary: Static development files for %{name}
 Group: Development/X11
-Requires: %{libxdamage}-devel = %{version}
-Provides: libxdamage-static-devel = %{version}-%{release}
+Requires: %{develname} = %{version}
+Provides: %{name}-static-devel = %{version}-%{release}
 
 Conflicts: libxorg-x11-static-devel < 7.0
+Obsoletes: %mklibname xdamage 1 -d -s
 
-%description -n %{libxdamage}-static-devel
-Static development files for %{name}
+%description -n %{staticdevelname}
+Static development files for %{name}.
 
-%files -n %{libxdamage}-static-devel
+%files -n %{staticdevelname}
 %defattr(-,root,root)
 %{_libdir}/libXdamage.a
 
@@ -87,13 +95,15 @@ Static development files for %{name}
 rm -rf %{buildroot}
 %makeinstall_std
 
+#(tpg) get rid of rpath
+chrpath -d %{buildroot}%{_libdir}/libXdamage.so.*
+
 %clean
 rm -rf %{buildroot}
 
-%post -p /sbin/ldconfig
-%postun -p /sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 
-%files -n %{libxdamage}
+%files -n %{libname}
 %defattr(-,root,root)
-%{_libdir}/libXdamage.so.1
-%{_libdir}/libXdamage.so.1.0.0
+%{_libdir}/libXdamage.so.%{major}*
