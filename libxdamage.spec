@@ -1,7 +1,7 @@
 %define libxdamage %mklibname xdamage 1
 Name: libxdamage
 Summary:  X Damage  Library
-Version: 1.1
+Version: 1.1.1
 Release: %mkrel 1
 Group: Development/X11
 License: MIT
@@ -97,5 +97,3 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{_libdir}/libXdamage.so.1
 %{_libdir}/libXdamage.so.1.0.0
-
-
