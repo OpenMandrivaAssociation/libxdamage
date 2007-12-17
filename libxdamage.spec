@@ -18,7 +18,6 @@ BuildRequires: x11-proto-devel >= 1.2.0
 BuildRequires: x11-util-macros >= 1.0.1
 BuildRequires: chrpath
 
-BuildRoot: %{_tmppath}/%{name}-root
 
 %description
 X Damage  Library.
