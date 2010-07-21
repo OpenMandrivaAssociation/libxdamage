@@ -5,7 +5,7 @@
 
 Name: libxdamage
 Summary:  X Damage  Library
-Version: 1.1.2
+Version: 1.1.3
 Release: %mkrel 1
 Group: Development/X11
 License: MIT
