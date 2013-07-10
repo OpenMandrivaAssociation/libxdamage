@@ -2,8 +2,8 @@
 %define libname %mklibname xdamage %{major}
 %define devname %mklibname xdamage -d
 
-Name:		libxdamage
 Summary: 	X Damage  Library
+Name:		libxdamage
 Version:	1.1.4
 Release:	1
 Group:		Development/X11
@@ -13,8 +13,8 @@ Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXdamage-%{versio
 
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xfixes)
-BuildRequires:	pkgconfig(xproto)
 BuildRequires:	pkgconfig(xorg-macros)
+BuildRequires:	pkgconfig(xproto)
 
 %description
 X Damage  Library.
@@ -22,7 +22,7 @@ X Damage  Library.
 %package -n %{libname}
 Summary:	X Damage Library
 Group:		Development/X11
-Provides:	%{name} = %{EVRD}
+Provides:	%{name} = %{version}-%{release}
 
 %description -n %{libname}
 X Damage  Library.
@@ -30,8 +30,8 @@ X Damage  Library.
 %package -n %{devname}
 Summary:	Development files for %{name}
 Group:		Development/X11
-Requires:	%{libname} = %{version}
-Provides:	%{name}-devel = %{EVRD}
+Requires:	%{libname} = %{version}-%{release}
+Provides:	%{name}-devel = %{version}-%{release}
 
 %description -n %{devname}
 Development files for %{name}
