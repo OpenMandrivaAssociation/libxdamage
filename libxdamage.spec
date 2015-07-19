@@ -5,7 +5,7 @@
 Summary: 	X Damage  Library
 Name:		libxdamage
 Version:	1.1.4
-Release:	12
+Release:	13
 Group:		Development/X11
 License:	MIT
 URL:		http://xorg.freedesktop.org
