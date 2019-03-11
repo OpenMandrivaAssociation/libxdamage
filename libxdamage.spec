@@ -4,8 +4,8 @@
 
 Summary: 	X Damage  Library
 Name:		libxdamage
-Version:	1.1.4
-Release:	17
+Version:	1.1.5
+Release:	1
 Group:		Development/X11
 License:	MIT
 URL:		http://xorg.freedesktop.org
@@ -37,24 +37,19 @@ Provides:	%{name}-devel = %{version}-%{release}
 Development files for %{name}
 
 %prep
-%setup -qn libXdamage-%{version}
+%autosetup -n libXdamage-%{version}
 
 %build
 autoreconf -fi
-%configure2_5x \
+%configure \
 	--disable-static \
 	--x-includes=%{_includedir} \
 	--x-libraries=%{_libdir}
 
-%make
+%make_build
 
 %install
-%makeinstall_std
-
-%pre -n %{devname}
-if [ -h %{_includedir}/X11 ]; then
-	rm -f %{_includedir}/X11
-fi
+%make_install
 
 %files -n %{libname}
 %{_libdir}/libXdamage.so.%{major}*
@@ -63,4 +58,3 @@ fi
 %{_libdir}/libXdamage.so
 %{_libdir}/pkgconfig/xdamage.pc
 %{_includedir}/X11/extensions/Xdamage.h
-
