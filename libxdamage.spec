@@ -2,10 +2,12 @@
 %define libname %mklibname xdamage %{major}
 %define devname %mklibname xdamage -d
 
+%global optflags %{optflags} -O3
+
 Summary: 	X Damage  Library
 Name:		libxdamage
 Version:	1.1.5
-Release:	1
+Release:	2
 Group:		Development/X11
 License:	MIT
 URL:		http://xorg.freedesktop.org
