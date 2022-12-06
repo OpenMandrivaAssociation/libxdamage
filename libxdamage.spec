@@ -15,18 +15,19 @@
 
 Summary: 	X Damage  Library
 Name:		libxdamage
-Version:	1.1.5
-Release:	3
+Version:	1.1.6
+Release:	1
 Group:		Development/X11
 License:	MIT
 URL:		http://xorg.freedesktop.org
-Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXdamage-%{version}.tar.bz2
+Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXdamage-%{version}.tar.xz
 
 BuildRequires:	pkgconfig(x11)
 BuildRequires:	pkgconfig(xfixes)
 BuildRequires:	pkgconfig(xorg-macros)
 BuildRequires:	pkgconfig(xproto)
 %if %{with compat32}
+BuildRequires:	libc6
 BuildRequires:	devel(libX11)
 BuildRequires:	devel(libXfixes)
 BuildRequires:	devel(libxcb)
