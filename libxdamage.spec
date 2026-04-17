@@ -103,7 +103,7 @@ cd build
 %make_install -C build
 
 %files -n %{libname}
-%{_libdir}/libXdamage.so.%{major}*
+#{_libdir}/libXdamage.so.%{major}*
 
 %files -n %{devname}
 %{_libdir}/libXdamage.so
@@ -112,7 +112,7 @@ cd build
 
 %if %{with compat32}
 %files -n %{lib32name}
-%{_prefix}/lib/libXdamage.so.%{major}*
+#{_prefix}/lib/libXdamage.so.%{major}*
 
 %files -n %{dev32name}
 %{_prefix}/lib/libXdamage.so
